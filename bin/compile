@@ -115,6 +115,12 @@ build_dependencies() {
   else
     install_node_modules "$BUILD_DIR"
   fi
+  if [ -f $BUILD_DIR/node_modules/.bin/jspm ]; then
+    if [ -z "$JSPM_GITHUB_AUTH_TOKEN" ]; then
+      $BUILD_DIR/node_modules/.bin/jspm config registries.github.auth $JSPM_GITHUB_AUTH_TOKEN
+    fi
+    $BUILD_DIR/node_modules/.bin/jspm install
+  fi
 }
 
 header "Building dependencies"
@@ -122,7 +128,7 @@ build_dependencies | indent
 
 cache_build() {
   local cache_directories=$(get_cache_directories)
-  
+
   echo "Clearing previous node cache"
   clear_cache
   if [ "$cache_directories" == "" ]; then
