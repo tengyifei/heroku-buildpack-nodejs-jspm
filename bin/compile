@@ -116,9 +116,11 @@ build_dependencies() {
     install_node_modules "$BUILD_DIR"
   fi
   if [ -f $BUILD_DIR/node_modules/.bin/jspm ]; then
-    if [ -z "$JSPM_GITHUB_AUTH_TOKEN" ]; then
+    if [ -n "$JSPM_GITHUB_AUTH_TOKEN" ]; then
+      echo "Register JSPM_GITHUB_AUTH_TOKEN"
       $BUILD_DIR/node_modules/.bin/jspm config registries.github.auth $JSPM_GITHUB_AUTH_TOKEN
     fi
+    echo "Install jspm dependencies"
     $BUILD_DIR/node_modules/.bin/jspm install
   fi
 }
