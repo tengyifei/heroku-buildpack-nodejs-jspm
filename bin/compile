@@ -76,7 +76,7 @@ install_bins() {
   local iojs_engine=$(read_json "$BUILD_DIR/package.json" ".engines.iojs")
   local npm_engine=$(read_json "$BUILD_DIR/package.json" ".engines.npm")
 
-  if [ -z "$iojs_engine-" ]; then
+  if [ -z "${iojs_engine-}" ]; then
     echo "engines.node (package.json):  ${node_engine:-unspecified}"
   else
     echo "engines.iojs (package.json):  $iojs_engine (iojs)"
@@ -84,7 +84,7 @@ install_bins() {
   echo "engines.npm (package.json):   ${npm_engine:-unspecified (use default)}"
   echo ""
 
-  if [ -z "$iojs_engine-" ]; then
+  if [ -z "${iojs_engine-}" ]; then
     warn_node_engine "$node_engine"
     install_nodejs "$node_engine" "$BUILD_DIR/.heroku/node"
     install_npm "$npm_engine" "$BUILD_DIR/.heroku/node"
@@ -128,7 +128,7 @@ build_dependencies() {
     install_node_modules "$BUILD_DIR"
   fi
   if [ -f $BUILD_DIR/node_modules/.bin/jspm ]; then
-    if [ -z "$JSPM_GITHUB_AUTH_TOKEN-" ]; then
+    if [ -z "${JSPM_GITHUB_AUTH_TOKEN-}" ]; then
       echo "No GitHub Auth Token"
     else
       echo "Register JSPM_GITHUB_AUTH_TOKEN"
