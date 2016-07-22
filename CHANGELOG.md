@@ -1,5 +1,26 @@
 # Node.js Buildpack Changelog
 
+## v91 (2016-7-7)
+
+- Do not fail build on output errors
+- Do not prune before install (shrinkwrap unsupported by prune)
+- Extended warnings (missing dependencies, econnreset, no start)
+- Remove hard limit on WEB_CONCURRENCY (32)
+
+## v90 (2016-4-20)
+
+- Blacklists the LANG env var
+
+## v89 (2016-3-11)
+
+- Adds heroku-prebuild script
+- Adds heroku-postbuild script
+
+## v88 (2016-2-23)
+
+- Retries all curl requests
+- Use HTTPS for node binary downloads again
+
 ## v87 (2015-11-03)
 
 Several edge-case fixes
